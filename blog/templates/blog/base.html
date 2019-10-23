@@ -6,15 +6,49 @@
 	{% load static %}
 	<link rel="stylesheet" href="{% static 'css/blog.css' %}">
 	<link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-
+    
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://code.iconify.design/1/1.0.3/iconify.min.js"></script>
 
+<style>
+<!-- https://github.com/iconify/iconify -->
+.icon-bell {
+    color: #f80;
+}
+.icon-bell:hover {
+    color: #f00;
+}
+
+</style>
+<script>
+    Iconify.setConfig('localStorage', true);
+</script>
 <body>
 
     <div class="page-header">
-        <h1><a href="/">Django Blog</a></h1>
+        <div class="row">
+            <div class="col-11">
+                <h1><a href="/">Django Blog</a></h1>
+            </div>
+            <div class="col-1 align-self-center">
+
+                {% if user.is_authenticated %}
+                        <a href="{% url 'post_new' %}" class="top-menu ">
+                            <span class="iconify" data-icon="mdi-plus" style="color: white"></span>
+                            <!-- ice cream emoji with a 90 deg turn -->
+                            <!-- <span data-rotate='90deg' data-icon="twemoji-ice-cream" data-width="32" data-height="32" class="iconify"></span> -->
+                            <!-- Home icon with color set to white -->
+                            <!--<span class="iconify" data-icon="fa-home" style="color: white"></span>-->
+                            <!-- Bell with color change on hover -->
+                            <!--<span class="iconify icon-bell" data-icon="vaadin-bell"></span>-->
+                        </a>
+                {% else %}
+                    <a href="/login" role="button" style='color: white; font-size: 24px;'>Login</a>
+                {% endif %}
+            </div>
+        </div>
     </div>
     <div class="content container">
         <div class="row">
@@ -24,6 +58,7 @@
             </div>
         </div>
     </div>
+
 
 </body>
 </html>
